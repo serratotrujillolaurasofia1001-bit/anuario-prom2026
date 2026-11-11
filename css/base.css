@@ -1,0 +1,69 @@
+/* ===== BASE: colores, fondo, libro, hojas y controles ===== */
+
+/* ---------- COLORES: cambia aquí y se actualiza todo el anuario ---------- */
+:root{
+  --verde:     #587d68;   /* verde principal (suave) */
+  --verde-osc: #3e5d4c;   /* verde oscuro para textos */
+  --verde-m:   #7ea28c;   /* verde medio */
+  --verde-c:   #a9c2b1;   /* verde claro (ondas) */
+  --verde-bg:  #edf2ea;   /* fondo de los recuadros */
+  --crema:     #fbf8f0;   /* color del papel */
+  --papel2:    #f4eedf;
+  --oro:       #b8995a;   /* dorado elegante */
+  --oro-c:     #e6d3a0;   /* dorado claro */
+  --acento:    #a35f5b;   /* toque rojo muy tenue (solo una línea fina en las esquinas) */
+  --tinta:     #2f3a33;   /* color del texto */
+  --fondo1:    #3a5a49;   /* fondo de la pantalla (centro) */
+  --fondo2:    #1f352a;   /* fondo de la pantalla (bordes) */
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden}
+body{
+  background:radial-gradient(ellipse at 50% 30%,var(--fondo1) 0%,var(--fondo2) 85%);
+  font-family:'Cormorant Garamond',Georgia,serif;color:var(--tinta);
+  user-select:none;-webkit-user-select:none;
+}
+
+/* cielo (estrellas quietas que solo cambian de brillo) */
+#sky{position:fixed;inset:0;pointer-events:none}
+#sky svg{position:absolute;opacity:.4;animation:tw 6s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.12}50%{opacity:.7}}
+
+/* escenario */
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding-bottom:56px}
+#scaler{width:800px;height:600px;position:relative;flex:none;transform-origin:center center}
+#book{position:absolute;inset:0;perspective:2400px;transition:transform 1s cubic-bezier(.645,.045,.355,1)}
+#book::before{content:'';position:absolute;left:8%;right:8%;bottom:-22px;height:26px;background:radial-gradient(ellipse at center,rgba(0,0,0,.4),transparent 70%)}
+
+.sheet{position:absolute;left:400px;top:0;width:400px;height:600px;transform-origin:left center;transform-style:preserve-3d;transition:transform 1.1s cubic-bezier(.645,.045,.355,1)}
+.sheet.flipped{transform:rotateY(-180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;background:var(--crema);contain:layout paint}
+.face.front{border-radius:0 8px 8px 0}
+.face.back{transform:rotateY(180deg);border-radius:8px 0 0 8px}
+.face.front::before,.face.back::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:15}
+.face.front::before{background:linear-gradient(to right,rgba(0,0,0,.18),rgba(0,0,0,0) 9%)}
+.face.back::before{background:linear-gradient(to left,rgba(0,0,0,.18),rgba(0,0,0,0) 9%)}
+.sheet.hard .face{box-shadow:0 0 0 3px #1f3a2c,0 0 0 4px var(--oro)}
+
+/* zonas para pasar página */
+.edge{position:absolute;top:0;bottom:0;width:38px;z-index:30;cursor:pointer}
+.edge.r{right:0}.edge.l{left:0}
+.edge.r:hover{background:linear-gradient(to left,rgba(184,153,90,.28),transparent)}
+.edge.l:hover{background:linear-gradient(to right,rgba(184,153,90,.28),transparent)}
+.edge.full{width:100%}
+
+/* controles */
+#ui{position:fixed;left:0;right:0;bottom:12px;display:flex;justify-content:center;align-items:center;gap:14px;z-index:50}
+#ui button,#goto{border:1.5px solid var(--oro);background:#2f4a3c;color:#f1e6c6;font:600 12px 'Montserrat',sans-serif;letter-spacing:.5px;border-radius:22px;padding:8px 20px;cursor:pointer;transition:background .2s}
+#ui button:hover{background:#3d5e4b}
+#ui button:disabled{opacity:.35;cursor:default}
+#goto{max-width:190px;padding:7px 12px}
+#info{min-width:170px;text-align:center;color:#f1e6c6;font:600 11px 'Montserrat',sans-serif;letter-spacing:1.2px}
+.fx{position:absolute;pointer-events:none;z-index:60}
+@media (max-width:640px){#info{display:none}#goto{max-width:130px}}
+@media (prefers-reduced-motion:reduce){#sky svg{animation:none}.sheet{transition-duration:.01s}}
+
+/* aviso si faltan archivos */
+#aviso{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:100;max-width:480px;background:#fbf8f0;color:#2f3a33;border:2px solid var(--oro);border-radius:12px;padding:22px 26px;font:500 16px/1.4 Georgia,serif;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+#aviso b{color:#8a3b36}

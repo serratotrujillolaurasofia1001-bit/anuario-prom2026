@@ -1,0 +1,42 @@
+/* ===== PORTADA Y CONTRAPORTADA (verde suave con detalles dorados) ===== */
+.cv{position:absolute;inset:0;overflow:hidden;
+  background:
+    repeating-linear-gradient(45deg,rgba(255,255,255,.02) 0 2px,transparent 2px 5px),
+    radial-gradient(circle at 50% 36%,#4f7a64 0%,#3f6551 52%,#2c4a3b 100%)}
+
+/* texto dorado */
+.gold{background:linear-gradient(180deg,#f8edc6 0%,#d9bd7a 50%,#a98b48 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+
+.cvw{position:absolute;width:170px;pointer-events:none}
+.cvw.tl{left:0;top:0}
+.cvw.br{right:0;bottom:0;transform:rotate(180deg)}
+.cv .w1{fill:#7ea28c}.cv .w2{fill:#a9c2b1;opacity:.55}
+
+.cv-frame{position:absolute;inset:12px;border:1.5px solid var(--oro);border-radius:8px;pointer-events:none}
+.cv-frame2{position:absolute;inset:19px;border:1px solid rgba(230,211,160,.45);border-radius:5px;pointer-events:none}
+.cor{position:absolute;width:44px;height:44px;pointer-events:none}
+.cor.c1{left:10px;top:10px}
+.cor.c2{right:10px;top:10px;transform:scaleX(-1)}
+.cor.c3{left:10px;bottom:10px;transform:scaleY(-1)}
+.cor.c4{right:10px;bottom:10px;transform:scale(-1,-1)}
+.cv .s{opacity:.7}
+.cv .sdiv i{background:linear-gradient(90deg,transparent,var(--oro-c),transparent)}
+
+.cv-logo,.bk-logo{position:absolute;left:150px;width:100px;height:100px;border-radius:50%;background:radial-gradient(circle,#fffaec,#efe1bd);border:3px solid var(--oro);box-shadow:0 0 0 3px #2c4a3b,0 0 0 4.5px var(--oro-c);display:flex;align-items:center;justify-content:center}
+.cv-logo{top:40px}
+.cv-logo .logo,.bk-logo .logo{position:static;width:62px;height:74px}
+.cv-school{position:absolute;left:0;right:0;top:154px;text-align:center;font:600 9px 'Montserrat',sans-serif;letter-spacing:2.3px}
+.cv-prom{position:absolute;left:0;right:0;top:174px;text-align:center;font:400 66px/1.15 'Great Vibes','Brush Script MT',cursive}
+.cv-t{position:absolute;left:0;right:0;text-align:center;font:700 40px/1 'Cormorant Garamond',serif;letter-spacing:10px;padding-left:10px}
+.cv-ribbon{position:absolute;left:84px;right:84px;top:402px;height:34px;border-radius:18px;background:#2c4a3b;border:1.5px solid var(--oro);box-shadow:inset 0 0 0 3px #2c4a3b,inset 0 0 0 4px rgba(230,211,160,.5);display:flex;align-items:center;justify-content:center;font:600 14px 'Montserrat',sans-serif;letter-spacing:5px;padding-left:5px}
+.cv-ribbon span{white-space:nowrap}
+.cv-ribbon.sm{font-size:11px;letter-spacing:3px}
+.cv-stars{position:absolute;left:0;right:0;top:470px;height:34px;display:flex;justify-content:center;align-items:center;gap:14px}
+
+/* contraportada */
+.const{position:absolute;left:50px;top:52px;width:300px;height:110px}
+.bk-t{position:absolute;left:0;right:0;top:162px;text-align:center;font:400 34px/1.2 'Great Vibes','Brush Script MT',cursive}
+.bk-logo{top:286px;left:160px;width:80px;height:80px;border-width:2.5px}
+.bk-logo .logo{width:48px;height:58px}
+.bk-s{position:absolute;left:0;right:0;top:376px;text-align:center;font:600 9.5px/1.7 'Montserrat',sans-serif;letter-spacing:2.6px}
+.bk-f{position:absolute;left:0;right:0;bottom:44px;text-align:center;font:italic 500 15px 'Cormorant Garamond',serif;color:#efe3bf}

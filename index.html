@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Anuario Escolar 1101 · Prom 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500;1,600;1,700&family=Great+Vibes&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/pages.css">
+<link rel="stylesheet" href="css/covers.css">
+</head>
+<body>
+
+<!-- Símbolos reutilizables: se definen una sola vez para que la página sea liviana -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f6e9bd"/><stop offset=".5" stop-color="#c9a85f"/>
+      <stop offset=".75" stop-color="#f2e2ad"/><stop offset="1" stop-color="#a98b48"/>
+    </linearGradient>
+    <symbol id="st" viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.8-6.3 3.8 1.7-7L2 9.2l7.1-.6z" fill="currentColor" stroke-linejoin="round"/></symbol>
+    <symbol id="stg" viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.8-6.3 3.8 1.7-7L2 9.2l7.1-.6z" fill="url(#gold)" stroke="#a98b48" stroke-width=".5" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
+
+<div id="sky"></div>
+
+<div id="stage">
+  <div id="scaler">
+    <div id="book"></div>
+    <div id="fxlayer"></div>
+  </div>
+</div>
+
+<div id="ui">
+  <button id="prev">◀ Anterior</button>
+  <div id="info"></div>
+  <select id="goto" aria-label="Ir a una sección"></select>
+  <button id="next">Siguiente ▶</button>
+</div>
+
+<script src="js/datos.js"></script>
+<script src="js/iconos.js"></script>
+<script src="js/pages.js"></script>
+<script src="js/book.js"></script>
+
+<!-- Si algo falla, avisa en pantalla en vez de dejar hojas en blanco -->
+<script>
+window.addEventListener('load', function(){
+  setTimeout(function(){
+    if(window.__anuarioListo) return;
+    var faltan = [];
+    if(typeof DATOS === 'undefined') faltan.push('js/datos.js');
+    if(typeof st === 'undefined') faltan.push('js/iconos.js');
+    if(typeof renderPage === 'undefined') faltan.push('js/pages.js');
+    var d = document.createElement('div');
+    d.id = 'aviso';
+    d.innerHTML = '<b>No se pudo cargar el anuario.</b><br>' +
+      (faltan.length ? 'Faltan o tienen otro nombre: <b>' + faltan.join(', ') + '</b>.<br>' : '') +
+      'Revisa que las carpetas <b>css</b> y <b>js</b> estén junto a index.html y que los archivos se llamen exactamente igual. ' +
+      'Si editaste <b>js/datos.js</b>, revisa que no falte alguna coma o comilla (presiona F12 → Consola para ver el error).';
+    document.body.appendChild(d);
+  }, 600);
+});
+</script>
+</body>
+</html>
